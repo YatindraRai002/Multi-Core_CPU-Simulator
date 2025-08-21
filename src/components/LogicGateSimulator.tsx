@@ -60,14 +60,24 @@ export default function LogicGateSimulator() {
       symbol: '=1',
       description: 'Exclusive OR - output is 1 when inputs are different',
       inputs: 2,
-      operation: (inputs) => inputs.filter(x => x).length === 1
+      operation: (inputs) => {
+        if (inputs.length === 2) {
+          return inputs[0] !== inputs[1];
+        }
+        return inputs.filter(x => x).length % 2 === 1;
+      }
     },
     XNOR: {
       name: 'XNOR',
       symbol: '=1̄',
       description: 'Exclusive NOR - output is 1 when inputs are same',
       inputs: 2,
-      operation: (inputs) => inputs.filter(x => x).length !== 1
+      operation: (inputs) => {
+        if (inputs.length === 2) {
+          return inputs[0] === inputs[1];
+        }
+        return inputs.filter(x => x).length % 2 === 0;
+      }
     }
   };
 
