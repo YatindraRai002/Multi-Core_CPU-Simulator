@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 type GateType = 'AND' | 'OR' | 'NOT' | 'NAND' | 'NOR' | 'XOR' | 'XNOR';
-type SimulatorMode = 'single' | 'truth-table' | 'circuit';
+type SimulatorMode = 'single' | 'truth-table';
 
 interface GateDefinition {
   name: GateType;
@@ -325,61 +325,6 @@ export default function LogicGateSimulator() {
     );
   };
 
-  const renderQuickTestMode = () => {
-    return (
-      <div className="space-y-6">
-        <div className="text-center">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-            Quick Gate Test
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
-            Test different input combinations quickly
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {Object.keys(gates).map((gateType) => {
-            const gate = gates[gateType as GateType];
-            const testInputs = gate.inputs === 1 ? [true] : [true, false];
-            const output = gate.operation(testInputs);
-            
-            return (
-              <div
-                key={gateType}
-                className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center"
-              >
-                <div className="mb-3">
-                  {renderGateSymbol(gateType as GateType, 'small')}
-                </div>
-                <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  {gateType}
-                </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mb-2">
-                  Input: {testInputs.join(', ')}
-                </div>
-                <div className={`text-lg font-bold ${
-                  output ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  Output: {output ? '1' : '0'}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-md">
-          <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">
-            Quick Test Results:
-          </h4>
-          <div className="text-sm text-blue-800 dark:text-blue-300 space-y-1">
-            <div>• All gates tested with sample inputs</div>
-            <div>• Use "Single Gate" mode for interactive testing</div>
-            <div>• Use "Circuit Builder" tab for complex circuits</div>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 space-y-6">
@@ -405,22 +350,11 @@ export default function LogicGateSimulator() {
           >
             Truth Table
           </button>
-          <button
-            onClick={() => setMode('circuit')}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-              mode === 'circuit'
-                ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow'
-                : 'text-gray-600 dark:text-gray-300'
-            }`}
-          >
-            Quick Test
-          </button>
         </div>
       </div>
 
       {mode === 'single' && renderSingleGateMode()}
       {mode === 'truth-table' && renderTruthTableMode()}
-      {mode === 'circuit' && renderQuickTestMode()}
       
       <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-md">
         <h4 className="font-semibold text-green-900 dark:text-green-200 mb-2">
