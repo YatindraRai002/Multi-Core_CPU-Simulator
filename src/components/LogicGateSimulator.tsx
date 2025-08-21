@@ -22,42 +22,42 @@ export default function LogicGateSimulator() {
   const gates: Record<GateType, GateDefinition> = {
     AND: {
       name: 'AND',
-      symbol: '&',
+     
       description: 'Output is 1 only when ALL inputs are 1',
       inputs: 2,
       operation: (inputs) => inputs.every(x => x)
     },
     OR: {
       name: 'OR',
-      symbol: '≥1',
+      
       description: 'Output is 1 when ANY input is 1',
       inputs: 2,
       operation: (inputs) => inputs.some(x => x)
     },
     NOT: {
       name: 'NOT',
-      symbol: '1',
+      
       description: 'Output is opposite of input',
       inputs: 1,
       operation: (inputs) => !inputs[0]
     },
     NAND: {
       name: 'NAND',
-      symbol: '&̄',
+     
       description: 'NOT AND - opposite of AND gate',
       inputs: 2,
       operation: (inputs) => !inputs.every(x => x)
     },
     NOR: {
       name: 'NOR',
-      symbol: '≥1̄',
+
       description: 'NOT OR - opposite of OR gate',
       inputs: 2,
       operation: (inputs) => !inputs.some(x => x)
     },
     XOR: {
       name: 'XOR',
-      symbol: '=1',
+
       description: 'Exclusive OR - output is 1 when inputs are different',
       inputs: 2,
       operation: (inputs) => {
@@ -69,7 +69,7 @@ export default function LogicGateSimulator() {
     },
     XNOR: {
       name: 'XNOR',
-      symbol: '=1̄',
+    
       description: 'Exclusive NOR - output is 1 when inputs are same',
       inputs: 2,
       operation: (inputs) => {
