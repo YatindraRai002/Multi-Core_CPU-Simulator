@@ -18,12 +18,12 @@ export default function BinaryLogicOperations() {
   const [result, setResult] = useState<OperationResult>({ binary: '', decimal: 0, hex: '' });
 
   const operations = {
-    AND: { symbol: '&', description: 'Bitwise AND - Both bits must be 1' },
-    OR: { symbol: '|', description: 'Bitwise OR - Either bit can be 1' },
-    XOR: { symbol: '^', description: 'Bitwise XOR - Bits must be different' },
-    NOT: { symbol: '~', description: 'Bitwise NOT - Inverts all bits' },
-    NAND: { symbol: '&̄', description: 'Bitwise NAND - NOT AND' },
-    NOR: { symbol: '|̄', description: 'Bitwise NOR - NOT OR' }
+    AND: { description: 'Bitwise AND - Both bits must be 1' },
+    OR: { description: 'Bitwise OR - Either bit can be 1' },
+    XOR: {  description: 'Bitwise XOR - Bits must be different' },
+    NOT: {  description: 'Bitwise NOT - Inverts all bits' },
+    NAND: {  description: 'Bitwise NAND - NOT AND' },
+    NOR: { description: 'Bitwise NOR - NOT OR' }
   };
 
   const performOperation = (binA: string, binB: string, op: LogicOperation, width: number): OperationResult => {
